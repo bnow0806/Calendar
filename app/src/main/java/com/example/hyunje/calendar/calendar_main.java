@@ -140,9 +140,7 @@ public class calendar_main extends Fragment {
             }
         });
 
-
         return view;
-
     }
 
     private void setCalendarDate(int month) {   //daylist에 날짜 추가하는 함수
@@ -158,8 +156,6 @@ public class calendar_main extends Fragment {
 
         private final LayoutInflater inflater;      //class내 변수
         private final List<String> list;
-
-
 
         public GridAdapter(Context context, List<String> list) {        //생성자
 
@@ -211,26 +207,13 @@ public class calendar_main extends Fragment {
             String sToday = String.valueOf(today);
             Log.e("sToday",""+sToday);
 
-            /*//parsing and  그루핑
-            ArrayList<String> test;
-            test = new ArrayList<String>();// 한번에 할당 고민
-            test.add("10");
-            test.add("11");
-            test.add("12");
-            test.add("123456789");
-
-            String parsing=test.get(3).substring(4,6);
-            Log.e("parsing","46:"+parsing);*/
-
             if (sToday.equals(getItem(position))) {                 //오늘날짜 =  getitem(position) 판단
-
 
                 holder.tvItemGridView.setTextColor(getResources().getColor(R.color.colorPrimary));
             }
             //test
 
             if (String.valueOf(c).equals(getItem(position))) {                 //오늘날짜 =  getitem(position) 판단
-
 
                 holder.tvItemGridView.setTextColor(getResources().getColor(R.color.colorPrimary));
             }
@@ -247,3 +230,9 @@ public class calendar_main extends Fragment {
 }
 
 
+   /*//parsing 예제
+            ArrayList<String> test;
+            test = new ArrayList<String>();
+            test.add("123456789");
+            String parsing=test.get(0).substring(4,6);
+            Log.e("parsing","46:"+parsing);*/
