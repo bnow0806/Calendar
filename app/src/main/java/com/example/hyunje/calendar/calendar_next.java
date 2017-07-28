@@ -16,14 +16,12 @@ import android.widget.TextView;
 public class calendar_next extends Fragment
 {
 
-   /* @Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        RelativeLayout layout = (RelativeLayout) inflater.inflate(R.layout.view2, container, false);
-
-        TextView text2=(TextView) layout.findViewById(R.id.text2);
-        second_view secondView=new second_view();
-        text2.setText(String.valueOf(secondView.center+1));
-        return layout;
-    }*/
+        View view =inflater.inflate(R.layout.view1, container, false);
+        TextView text=(TextView) view.findViewById(R.id.text);
+        text.setText("next");
+        return view;
+    }
 }
