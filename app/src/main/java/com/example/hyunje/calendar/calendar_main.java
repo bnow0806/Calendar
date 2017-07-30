@@ -1,3 +1,4 @@
+/*
 package com.example.hyunje.calendar;
 import android.app.Fragment;
 import android.content.Context;
@@ -19,10 +20,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+*/
 /**
  * Created by Mureung on 2017-07-24.
  * http://heum-story.tistory.com/6 - 원본 코드
- */
+ *//*
+
 
 public class calendar_main extends Fragment {
     private TextView tvDate;
@@ -114,26 +117,34 @@ public class calendar_main extends Fragment {
 
                 if (xAtUp < xAtDown) {
                     // 다음 view 보여줌
-               /* flipper.showNext();*/
+               */
+/* flipper.showNext();*//*
+
 
                     counter=counter+1;
                     c=c+1;
                     view1.setText(String.valueOf(counter));
-                    /*gridView = (GridView)view.findViewById(R.id.gridview);
+                    */
+/*gridView = (GridView)view.findViewById(R.id.gridview);
                     gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
-                    gridView.setAdapter(gridAdapter);*/
+                    gridView.setAdapter(gridAdapter);*//*
+
                     Log.e("xAtuP"+String.valueOf(xAtUp),"xAtDown"+String.valueOf(xAtDown));
 
                 } else if (xAtUp > xAtDown) {
                     // 전 view 보여줌
-                /*flipper.showPrevious();*/
+                */
+/*flipper.showPrevious();*//*
+
 
                     counter=counter-1;
                     c=c-1;
                     view1.setText(String.valueOf(counter));
-                    /*gridView = (GridView)view.findViewById(R.id.gridview);    //그림 다시그리는 코드
+                    */
+/*gridView = (GridView)view.findViewById(R.id.gridview);    //그림 다시그리는 코드
                     gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
-                    gridView.setAdapter(gridAdapter);*/
+                    gridView.setAdapter(gridAdapter);*//*
+
                     Log.e("xAtuP"+String.valueOf(xAtUp),"xAtDown"+String.valueOf(xAtDown));
                 }
                 return true;
@@ -230,7 +241,9 @@ public class calendar_main extends Fragment {
 }
 
 
-   /*//parsing 예제
+   */
+/*//*
+/parsing 예제
             ArrayList<String> test;
             test = new ArrayList<String>();
             test.add("123456789");
