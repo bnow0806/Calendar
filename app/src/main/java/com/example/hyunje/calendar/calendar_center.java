@@ -30,7 +30,7 @@ public class calendar_center extends Fragment
         ViewPager viewPager=(ViewPager)view.findViewById(R.id.view_pager);
         mViewPagerAdapter=new ViewPagerAdapter(getFragmentManager(),mFragments);
         viewPager.setAdapter(mViewPagerAdapter);
-        viewPager.setCurrentItem(mFragments.size()/2);
+        viewPager.setCurrentItem(mFragments.size());
 
         return view;
     }
@@ -57,8 +57,8 @@ public class calendar_center extends Fragment
 
         ArrayList<Fragment> fList = new ArrayList<Fragment>();
 
-        for(int i=0;i<36;i++) {
-            fList.add(MyFragment.newInstance("Fragment"+i));
+        for(int i=-11;i<1;i++) {                                //1년치 fragment 생성
+            fList.add(MyFragment.newInstance(""+i));
         }
         return fList;
     }

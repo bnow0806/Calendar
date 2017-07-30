@@ -1,4 +1,4 @@
-/*
+
 package com.example.hyunje.calendar;
 import android.app.Fragment;
 import android.content.Context;
@@ -20,11 +20,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-*/
+
 /**
  * Created by Mureung on 2017-07-24.
  * http://heum-story.tistory.com/6 - 원본 코드
- *//*
+ */
 
 
 public class calendar_main extends Fragment {
@@ -33,27 +33,11 @@ public class calendar_main extends Fragment {
     private GridView gridView;
     private ArrayList<String> dayList;
     private Calendar mCal;
-    ViewFlipper flipper;
-    int counter=1;
-    float xAtDown;
-    float xAtUp;
-    private TextView view1;
-    private int c=1;
-
-
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.activity_calendar, container, false);
+        final View view = inflater.inflate(R.layout.view1, container, false);
 
         tvDate = (TextView)view.findViewById(R.id.tv_date);
-
-
-        // 오늘에 날짜를 세팅 해준다.
-        flipper = (ViewFlipper) view.findViewById(R.id.viewFlipper);
-
-
-        view1=(TextView) view.findViewById(R.id.view1);
-        view1.setText(String.valueOf(counter));
 
         long now = System.currentTimeMillis(); //long을 int로 바꾸면 에러남
         final Date date = new Date(now);
@@ -63,8 +47,6 @@ public class calendar_main extends Fragment {
         final SimpleDateFormat curYearFormat = new SimpleDateFormat("yyyy", Locale.KOREA);
         final SimpleDateFormat curMonthFormat = new SimpleDateFormat("MM", Locale.KOREA);
         final SimpleDateFormat curDayFormat = new SimpleDateFormat("dd", Locale.KOREA);
-
-
 
         //현재 날짜(월,일) 텍스트뷰에 뿌려줌
 
@@ -101,7 +83,7 @@ public class calendar_main extends Fragment {
         gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
-        //그리드뷰 터치리스터
+        /*//그리드뷰 터치리스터
         gridView.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -116,40 +98,13 @@ public class calendar_main extends Fragment {
                 }
 
                 if (xAtUp < xAtDown) {
-                    // 다음 view 보여줌
-               */
-/* flipper.showNext();*//*
-
-
-                    counter=counter+1;
-                    c=c+1;
-                    view1.setText(String.valueOf(counter));
-                    */
-/*gridView = (GridView)view.findViewById(R.id.gridview);
-                    gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
-                    gridView.setAdapter(gridAdapter);*//*
-
-                    Log.e("xAtuP"+String.valueOf(xAtUp),"xAtDown"+String.valueOf(xAtDown));
 
                 } else if (xAtUp > xAtDown) {
                     // 전 view 보여줌
-                */
-/*flipper.showPrevious();*//*
-
-
-                    counter=counter-1;
-                    c=c-1;
-                    view1.setText(String.valueOf(counter));
-                    */
-/*gridView = (GridView)view.findViewById(R.id.gridview);    //그림 다시그리는 코드
-                    gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
-                    gridView.setAdapter(gridAdapter);*//*
-
-                    Log.e("xAtuP"+String.valueOf(xAtUp),"xAtDown"+String.valueOf(xAtDown));
-                }
+                     }
                 return true;
-            }
-        });
+         }
+        });*/
 
         return view;
     }
@@ -174,7 +129,6 @@ public class calendar_main extends Fragment {
             this.list = list;       //  list = daylist가 됨
         }
 
-
         @Override
         public int getCount() {
 
@@ -190,7 +144,6 @@ public class calendar_main extends Fragment {
         @Override
         public long getItemId(int position) {
             return position;}
-
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -224,28 +177,23 @@ public class calendar_main extends Fragment {
             }
             //test
 
-            if (String.valueOf(c).equals(getItem(position))) {                 //오늘날짜 =  getitem(position) 판단
-
-                holder.tvItemGridView.setTextColor(getResources().getColor(R.color.colorPrimary));
-            }
-
-
             return convertView; //변경된 convertView
         }
     }
 
     private class ViewHolder {      //뷰들을 보관하는 객체
-
         TextView tvItemGridView;
     }
 }
 
 
-   */
-/*//*
+
+/*
 /parsing 예제
             ArrayList<String> test;
             test = new ArrayList<String>();
             test.add("123456789");
             String parsing=test.get(0).substring(4,6);
-            Log.e("parsing","46:"+parsing);*/
+            Log.e("parsing","46:"+parsing);*//*
+*/
+
