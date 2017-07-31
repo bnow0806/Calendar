@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,17 +21,18 @@ public class calendar_center extends Fragment
 {
 
     private  ViewPagerAdapter mViewPagerAdapter;
+    private int num=36;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View view =  inflater.inflate(R.layout.viewpager, container, false);    //viewpager 할당해주는 코드
 
-        ArrayList<Fragment> mFragments = getFragments();
+        /*ArrayList<Fragment> mFragments = getFragments();*/
         ViewPager viewPager=(ViewPager)view.findViewById(R.id.view_pager);
-        mViewPagerAdapter=new ViewPagerAdapter(getFragmentManager(),mFragments);
+        mViewPagerAdapter=new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(mViewPagerAdapter);
-        viewPager.setCurrentItem(mFragments.size());
+        viewPager.setCurrentItem(num);
 
         return view;
     }
@@ -39,21 +41,27 @@ public class calendar_center extends Fragment
         private List<Fragment> fragments;
         private FragmentManager fm;
 
-        public ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> fragments) {
+        public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
             this.fm=fm;
-            this.fragments = fragments;}
+            }
 
         @Override
         public int getCount() {
-            return fragments.size();}
+            return num;}
 
         @Override
         public Fragment getItem(int position) {
-            return fragments.get(position);}
+            Fragment fragment=null;
+            int x=position+1-num;       //counter 맞추기위한 연산
+
+            fragment=MyFragment.newInstance(String.valueOf(x));
+            Log.e("Fragment","no:"+x);
+            return fragment;
+            }
     }
 
-    private ArrayList<Fragment> getFragments(){
+   /* private ArrayList<Fragment> getFragments(){
 
         ArrayList<Fragment> fList = new ArrayList<Fragment>();
 
@@ -61,15 +69,9 @@ public class calendar_center extends Fragment
             fList.add(MyFragment.newInstance(""+i));
         }
         return fList;
-    }
+    }*/
 
 }
-
-
-
-
-
-
 
     /*  @Override
       public Fragment getItem(int position) {         //viewpager 제어 해주는 코드
