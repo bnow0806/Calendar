@@ -3,6 +3,7 @@ package com.example.hyunje.calendar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,13 +53,26 @@ public class calendar_center extends Fragment
 
         @Override
         public Fragment getItem(int position) {
+
+
             Fragment fragment=null;
             int x=position+1-num;       //counter 맞추기위한 연산
 
             fragment=MyFragment.newInstance(String.valueOf(x));
             Log.e("Fragment","no:"+x);
+
             return fragment;
-            }
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) { //instance 죽었는지 어떻게 확인???
+
+            FragmentManager manager = ((Fragment) object).getFragmentManager();
+            FragmentTransaction trans = manager.beginTransaction();
+            trans.remove((Fragment) object);
+            trans.commit();
+            super.destroyItem(container, position, object);
+        }
     }
 
    /* private ArrayList<Fragment> getFragments(){
