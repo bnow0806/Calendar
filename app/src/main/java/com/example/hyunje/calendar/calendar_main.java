@@ -1,3 +1,4 @@
+/*
 
 package com.example.hyunje.calendar;
 import android.app.Fragment;
@@ -21,10 +22,12 @@ import java.util.List;
 import java.util.Locale;
 
 
+*/
 /**
  * Created by Mureung on 2017-07-24.
  * http://heum-story.tistory.com/6 - 원본 코드
- */
+ *//*
+
 
 
 public class calendar_main extends Fragment {
@@ -83,7 +86,9 @@ public class calendar_main extends Fragment {
         gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
-        /*//그리드뷰 터치리스터
+        */
+/*//*
+/그리드뷰 터치리스터
         gridView.setOnTouchListener(new View.OnTouchListener()
         {
             @Override
@@ -104,7 +109,8 @@ public class calendar_main extends Fragment {
                      }
                 return true;
          }
-        });*/
+        });*//*
+
 
         return view;
     }
@@ -148,7 +154,7 @@ public class calendar_main extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             Log.e("getView","alive");
-            ViewHolder holder=null;
+            ViewHolder holder=null; //
 
             if (convertView == null) {      //초기에 convertView=null, convertView는 재활용과 관련된 파라메터
 
@@ -188,6 +194,7 @@ public class calendar_main extends Fragment {
 
 
 
+*/
 /*
 /parsing 예제
             ArrayList<String> test;
@@ -196,4 +203,8 @@ public class calendar_main extends Fragment {
             String parsing=test.get(0).substring(4,6);
             Log.e("parsing","46:"+parsing);*//*
 */
+/*
+*//*
 
+
+*/

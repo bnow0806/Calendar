@@ -71,19 +71,19 @@ public class calendar_center extends Fragment
 
 
 
-  /*  @Override
-    public Fragment getItem(int position) {         //viewpager 제어 해주는 코드
-        Fragment fragmet=null;
-        switch (position){
-            case 0:
-                fragmet=new calendar_pre();
-                break;
-            case 1:
-                fragmet=new calendar_now();
-                break;
-            case 2:
-                fragmet=new calendar_next();
-                break;
-        }
-        return fragmet;
-    }*/
+    /*  @Override
+      public Fragment getItem(int position) {         //viewpager 제어 해주는 코드
+          Fragment fragmet=null;
+          switch (position){
+              case 0:
+                  fragmet=new calendar_pre();
+                  break;
+              case 1:
+                  fragmet=new calendar_now();
+                  break;
+              case 2:
+                  fragmet=new calendar_next();
+                  break;
+          }
+          return fragmet;
+      }*/

@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -21,17 +20,21 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by Mureung on 2017-07-28.
+ * Created by HyunJe on 2017-07-31.
  */
 
-public class MyFragment extends Fragment {
+public class MyFragment extends Fragment  {
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     private TextView tvDate;
     private GridAdapter gridAdapter;
     private GridView gridView;
     private ArrayList<String> dayList;
     private Calendar mCal;
+
+    //fragment 요소
     private int counter;
+    private int fragmentyear;
+    private int fragmentmonth;
 
     public static final MyFragment newInstance(String message) {    //newInstance 함수
         MyFragment f = new MyFragment();
@@ -78,10 +81,12 @@ public class MyFragment extends Fragment {
         for (int i = 1; i < dayNum; i++) {      // 그월에 1일 맞추는 함수
             dayList.add("");
         }
-
 //현재 날짜(월,일) 텍스트뷰에 뿌려줌
 
-        tvDate.setText(mCal.get(Calendar.YEAR) + "/" + (mCal.get(Calendar.MONTH)+1));
+        fragmentyear=mCal.get(Calendar.YEAR);         //fragment내 에서만 적용되고, 변동안되게 하려는 수단
+        fragmentmonth=mCal.get(Calendar.MONTH)+1;
+
+        tvDate.setText(fragmentyear + "/" + fragmentmonth);
 
         setCalendarDate(mCal.get(Calendar.MONTH) + 1);  //+1: 1월달이 0 이기 때문
 
@@ -89,19 +94,12 @@ public class MyFragment extends Fragment {
         gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
         gridView.setAdapter(gridAdapter);
 
-        gridView.setOnTouchListener(new View.OnTouchListener()
-        {
-            public boolean onTouch(View v, MotionEvent me)  //1.뷰페이저 스크롤시 터치문제!!! 2.new calendar 생성문제
-            {
-                int action = me.getActionMasked(); // MotionEvent types such as ACTION_UP,ACTION_DOWN
-                float currentXPosition = me.getX();
-                float currentYPosition = me.getY();
-                int position = gridView.pointToPosition((int) currentXPosition, (int) currentYPosition); // Access text in the cell, or the object itself
-                Calendar mCaltouch = Calendar.getInstance();    //새로생성
-                mCaltouch.set(Integer.parseInt(curYearFormat.format(date)), Integer.parseInt(curMonthFormat.format(date)) -1+counter , 1);
-                String text=mCaltouch.get(Calendar.YEAR) + "/" + (mCaltouch.get(Calendar.MONTH)+1+"/"+gridView.getItemAtPosition(position));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {     //gridview 내부에 item click 했을때 실행동작
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String text=fragmentyear + "/" + fragmentmonth+ "/" +gridView.getItemAtPosition(position);
                 Toast.makeText(getContext(),text,Toast.LENGTH_SHORT).show();
-                return false;
             }
         });
 
@@ -182,5 +180,4 @@ public class MyFragment extends Fragment {
         TextView tvItemGridView;
     }
 }
-
 
