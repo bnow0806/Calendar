@@ -4,20 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF0000">
-
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#21a4ff">
+        <ImageButton
+            android:id="@+id/pre"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_menu_camera"/>
     <TextView
         android:id="@+id/tv_date"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#21a4ff"
-        android:gravity="center_vertical"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:gravity="center"
         android:paddingLeft="8dp"
         android:textColor="#ffffff"
         android:textSize="20sp" />
-
+        <ImageButton
+            android:id="@+id/next"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_bluetooth_disabled_black_36dp"/>
+    </LinearLayout>
     <GridView
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp"
         android:id="@+id/gridview"
         android:layout_height="match_parent"
         android:layout_width="match_parent"

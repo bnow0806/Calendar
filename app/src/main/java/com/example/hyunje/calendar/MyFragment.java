@@ -3,13 +3,16 @@ package com.example.hyunje.calendar;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
@@ -35,6 +38,14 @@ public class MyFragment extends Fragment  {
     private int counter;
     private int fragmentyear;
     private int fragmentmonth;
+
+    //월, 빈칸 보호요소
+    private ArrayList<String> protected_dayList;
+    private int protected_size;
+    private boolean bool=true;
+
+    //viewpager 부모 조작
+    ViewPager viewPager;
 
     public static final MyFragment newInstance(String message) {    //newInstance 함수
         MyFragment f = new MyFragment();
@@ -81,7 +92,11 @@ public class MyFragment extends Fragment  {
         for (int i = 1; i < dayNum; i++) {      // 그월에 1일 맞추는 함수
             dayList.add("");
         }
-//현재 날짜(월,일) 텍스트뷰에 뿌려줌
+        protected_dayList=dayList;
+        protected_size=protected_dayList.size();
+
+
+        //현재 날짜(월,일) 텍스트뷰에 뿌려줌
 
         fragmentyear=mCal.get(Calendar.YEAR);         //fragment내 에서만 적용되고, 변동안되게 하려는 수단
         fragmentmonth=mCal.get(Calendar.MONTH)+1;
@@ -89,6 +104,15 @@ public class MyFragment extends Fragment  {
         tvDate.setText(fragmentyear + "/" + fragmentmonth);
 
         setCalendarDate(mCal.get(Calendar.MONTH) + 1);  //+1: 1월달이 0 이기 때문
+        Log.e("sizee2",""+dayList.size());
+
+        //button click event
+        viewPager=(ViewPager) container;
+        ImageButton pre = (ImageButton) v.findViewById(R.id.pre);
+        ImageButton next=  (ImageButton) v.findViewById(R.id.next);
+
+        pre.setOnClickListener(new MyButtonHandler());
+        next.setOnClickListener(new MyButtonHandler());
 
         gridView = (GridView)v.findViewById(R.id.gridview);
         gridAdapter = new GridAdapter(getActivity().getApplicationContext(), dayList);
@@ -174,10 +198,43 @@ public class MyFragment extends Fragment  {
 
             return convertView; //변경된 convertView
         }
+
+        @Override
+        public boolean isEnabled(int position) {
+
+           /* for(int i=0;protected_dayList.size()>i;i++){
+                if(getItem(position).equals("월")){
+                    bool=false; }
+            }
+        return bool;*/
+
+            for(int i=0;protected_size>i;i++){
+           if(getItem(position).equals(protected_dayList.get(i))){
+           bool= false;break;}else{bool=true;}}
+            return bool;
+     }
     }
 
     private class ViewHolder {      //뷰들을 보관하는 객체
         TextView tvItemGridView;
     }
+
+    //버튼 클릭시 실행할 리스너
+    private class MyButtonHandler implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.pre:
+                    /*Toast.makeText(getContext(),"왼쪽",Toast.LENGTH_SHORT).show();*/
+                    viewPager.setCurrentItem(counter+23);   //개수 조절 수동으로 해주어야함. 인자가 counter밖에 없기 때문
+                    break;
+                case R.id.next:
+                    viewPager.setCurrentItem(counter+47);
+                    break;}
+        }
+    }
+
+
 }
 

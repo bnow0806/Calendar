@@ -3,6 +3,7 @@ package com.example.hyunje.calendar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -10,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.app.FragmentManager;
-import java.util.ArrayList;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
 import java.util.List;
 
 /**
@@ -34,17 +37,15 @@ public class calendar_center extends Fragment
         mViewPagerAdapter=new ViewPagerAdapter(getFragmentManager());
         viewPager.setAdapter(mViewPagerAdapter);
         viewPager.setCurrentItem(num);
+        viewPager.setOffscreenPageLimit(6);
 
         return view;
     }
 
-    public  class ViewPagerAdapter extends FragmentPagerAdapter  {
-        private List<Fragment> fragments;
-        private FragmentManager fm;
+    public  class ViewPagerAdapter extends FragmentStatePagerAdapter  {
 
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
-            this.fm=fm;
             }
 
         @Override
@@ -54,12 +55,11 @@ public class calendar_center extends Fragment
         @Override
         public Fragment getItem(int position) {
 
-
             Fragment fragment=null;
             int x=position+1-num;       //counter 맞추기위한 연산
 
             fragment=MyFragment.newInstance(String.valueOf(x));
-            Log.e("Fragment","no:"+x);
+            Log.e("Fragment!!","no:"+x);
 
             return fragment;
         }
@@ -71,8 +71,10 @@ public class calendar_center extends Fragment
             FragmentTransaction trans = manager.beginTransaction();
             trans.remove((Fragment) object);
             trans.commit();
+            Log.e("no","destroying");
             super.destroyItem(container, position, object);
         }
+
     }
 
    /* private ArrayList<Fragment> getFragments(){
